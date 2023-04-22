@@ -1,0 +1,45 @@
+# Pranjal-Varshney_Frontend
+SteelEye Frontend Assignment
+
+
+
+Errors and Warnings in  the given code
+
+
+•	The very first error that we get is that in the ‘SingleListItem’ component, the ‘onClickHandler’ prop is defined as a require function, but it is not passed down to the component in a correct manner. The ‘onClickHandler’ prop is used like an event handler function but it’s defined to receive no arguments. We can fix this issue if we change ’SingleListItem’ component for receiving a function that takes index as an argument. Like this :
+const SingleListItem = memo(({ index, isSelected, onClickHandler, text }) => {
+  return (
+    <li
+      style={{ backgroundColor: isSelected ? 'green' : 'red'}}
+      onClick={() => onClickHandler(index)}
+    >
+      {text}
+    </li>
+  );
+});
+
+•	Now, in the ‘SingleListItem’ component, the ‘isSelected’ prop is expected to be a Boolean value, but it is passed as ‘selectedIndex’, which is a state value returned by ‘useState’. To fix this, we need to modify the  ‘isSelected’ prop in the ‘SingleListItem’ component to use a comparison to check if the ‘index’ prop matches the ‘selectedIndex’ state value: 
+const SingleListItem = memo(({ index, isSelected, onClickHandler, text }) => {
+  return (
+    <li
+      style={{ backgroundColor: index === isSelected ? 'green' : 'red'}}
+      onClick={() => onClickHandler(index)}
+    >
+      {text}
+    </li>
+  );
+});
+
+•	In the ‘WrappedListComponent’ component, the ‘setSelectedIndex’ function is called as a setter function, which should be used to update the ‘selectedIndex’ state value. To fix this, we need to update the state value using the ‘selectedIndex’ variable, like this:
+
+const [selectedIndex, setSelectedIndex] = useState(null);
+
+•	In the ‘WrappedListComponent’ component, the ‘items’ prop is defined as an array of objects with a ‘text’ property, but the ‘array’ and ‘shapeOf’ PropTypes validators should be ‘arrayOf’ and ‘shape’, respectively:
+	
+WrappedListComponent.propTypes = {
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      text: PropTypes.string.isRequired,
+    })
+  ),
+};
