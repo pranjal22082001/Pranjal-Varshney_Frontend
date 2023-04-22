@@ -1,0 +1,24 @@
+# Pranjal-Varshney_Frontend
+SteelEye Frontend Assignment
+
+
+A simple list component is a user interface element that displays a list of items in a specific order. It allows users to view and interact with a collection of related information, such as a list of tasks, messages, products, or contacts.
+The basic functionality of a simple list component includes displaying a list of items, with each item typically represented by a short text description or an icon, and sometimes an accompanying image. Users can typically scroll through the list to view all items, and may be able to select or click on individual items to perform an action, such as opening a new page, deleting an item, or editing its details.
+Simple list components are often used in web and mobile app interfaces as a way to present and organize data in a clear and concise manner. They are commonly used in combination with other UI components, such as search bars, filters, or pagination, to provide users with more advanced functionality and control over the displayed data.
+In React, a simple list component is a reusable piece of code that renders a list of items using the JSX syntax. It is typically created as a functional component that receives an array of data as a prop, and uses the map() method to iterate over the data and create a list of individual items.
+
+Lets take an example of the following list component in react :
+import React from 'react';
+function SimpleList(props) {
+  const { items } = props;
+  return (
+    <ul>
+      {items.map((item) => (
+        <li key={item.id}>{item.name}</li>
+      ))}
+    </ul>
+  );
+}
+export default SimpleList;
+
+In the above given example, the Simple list component receives an array of items as the ‘Items’ prop and uses the map() method to iterate over the array and render a list item for each object. The ‘key’ prop is used to uniquely identify each item in the list, while the ‘name’ property of the item is used to display the item’s name. 
